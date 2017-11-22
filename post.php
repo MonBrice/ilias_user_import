@@ -1,17 +1,18 @@
 ﻿<?php
+//debugging
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 if(isset($_POST['daten'])){
 
-    //xml anlegen mit header
+    //create xml with header
     $xml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8" standalone="no"?><Users></Users>');
 
-    //csv daten in array packen
+    //create array with the csv data
     $input = array_map('str_getcsv', str_getcsv($_POST['daten'], "\n"));
 
-    //array durchgehen
+    //array work
     foreach($input AS $key => $value){
 
 	//create login
@@ -58,14 +59,14 @@ if(isset($_POST['daten'])){
     readfile('tmp/import.xml');
 
 
-    /* nur darstellen
+    /* show only
     Header('Content-type: text/xml');
     echo $xml->asXML();
     */
 
 }
 
-
+//for german umlaute
 function createUsername($name){
 
 
